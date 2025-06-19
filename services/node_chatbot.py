@@ -1,28 +1,24 @@
 import os
 from typing import List
 
-from openai import OpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 
 from model import State
 
 
 def ask_ai(messages: List):
-    client = OpenAI(
-        api_key=os.environ.get("OPENAI_API_KEY"),
-        base_url=os.environ.get("OPENAI_API_URL"),
-    )
-
-    response = client.chat.completions.create(
+    client = ChatGoogleGenerativeAI(
+        google_api_key=os.environ.get("OPENAI_API_KEY"),
         model=os.environ.get("OPENAI_MODEL"),
-        messages=messages
     )
 
-    return response.choices[0].message.content
+    response = client.invoke(messages)
+    return response
 
 
 def node_chatbot(state: State):
     return {
         "messages": [
-            ask_ai(state['messages']),
+            ask_ai(state.messages),
         ]
     }

@@ -1,5 +1,7 @@
 google-genai==1.21.0
 langgraph==0.4.5
-dotenv==0.9.9
+python-dotenv==1.0.1
 openai==1.88.0
 grandalf==0.8
+langchain-google-genai
+langchain-core

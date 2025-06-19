@@ -13,4 +13,5 @@ graph_builder.add_edge(START, node_chatbot.__name__)
 graph_builder.add_edge(node_chatbot.__name__, END)
 graph = graph_builder.compile()
 
-print(graph.get_graph().draw_ascii())
+response = (graph.invoke({"messages": "What is your name"}))
+print(response)
